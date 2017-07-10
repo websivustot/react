@@ -60,9 +60,30 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var app = document.getElementById('app');
+	var siteData = {
+	  logo: 'logo.png',
+	  menu: [{
+	    id: 1,
+	    title: 'Main Page',
+	    uri: 'index.html'
+	  }, {
+	    id: 2,
+	    title: 'Company',
+	    uri: 'company.html'
+	  }, {
+	    id: 3,
+	    title: 'Contacts',
+	    uri: 'contact.html'
+	  }],
+	  content: [{
+	    id: 1,
+	    text: 'React makes it painless to create interactive UIs. Design simple views for each state in your application, and React will efficiently update and render just the right components when your data changes. Declarative views make your code more predictable and easier to debug.'
+	  }]
+	};
 
-	_reactDom2.default.render(_react2.default.createElement(_SiteLayout2.default, null), app);
+	var app = document.getElementById('app');
+	//console.log(siteData);
+	_reactDom2.default.render(_react2.default.createElement(_SiteLayout2.default, { site: siteData }), app);
 
 /***/ }),
 /* 1 */
@@ -22245,12 +22266,13 @@
 	    _createClass(SiteLayout, [{
 	        key: 'render',
 	        value: function render() {
+	            console.log(this.props.site.content[0].text);
 	            return _react2.default.createElement(
 	                'div',
 	                { className: 'app' },
 	                _react2.default.createElement(_SiteLogo2.default, null),
 	                _react2.default.createElement(_SiteMenu2.default, null),
-	                _react2.default.createElement(_SiteContent2.default, null)
+	                _react2.default.createElement(_SiteContent2.default, { content: this.props.site.content[0].text })
 	            );
 	        }
 	    }]);
@@ -22386,7 +22408,11 @@
 	    _createClass(SiteContent, [{
 	        key: "render",
 	        value: function render() {
-	            return _react2.default.createElement("div", { className: "content" });
+	            return _react2.default.createElement(
+	                "div",
+	                { className: "content" },
+	                this.props.content
+	            );
 	        }
 	    }]);
 

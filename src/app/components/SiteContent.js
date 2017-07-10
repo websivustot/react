@@ -5,7 +5,7 @@ class SiteContent extends React.Component
     render()
     {
         return (
-                <div className="content"></div>
+                <div className="content">{this.props.content}</div>
         );
     }
 }

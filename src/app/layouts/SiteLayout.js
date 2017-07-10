@@ -7,11 +7,12 @@ class SiteLayout extends React.Component
 {
     render()
     {
+        console.log(this.props.site.content[0].text);
         return (
             <div className="app">
                 <SiteLogo />
                 <SiteMenu />
-                <SiteContent />
+                <SiteContent content={this.props.site.content[0].text} />
             </div>
         );
     }
