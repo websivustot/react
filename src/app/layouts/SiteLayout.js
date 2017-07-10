@@ -1,4 +1,7 @@
 import React from 'react';
+import SiteLogo from '../components/SiteLogo';
+import SiteMenu from '../components/SiteMenu';
+import SiteContent from '../components/SiteContent';
 
 class SiteLayout extends React.Component
 {
@@ -6,9 +9,9 @@ class SiteLayout extends React.Component
     {
         return (
             <div className="app">
-                <div className="logo"></div>
-                <ul className="menu"></ul>
-                <div className="content"></div>
+                <SiteLogo />
+                <SiteMenu />
+                <SiteContent />
             </div>
         );
     }
