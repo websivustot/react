@@ -1,7 +1,7 @@
 import React from 'react';
 import MenuItem from '../components/MenuItem';
 
-class SiteMenu extends React.Component
+class SiteLeftMenu extends React.Component
 {
     render()
     {
@@ -15,9 +15,11 @@ class SiteMenu extends React.Component
             />
         });
         return (
-                  <ul className="col-md-7 nav nav-pills top-menu">{menus}</ul>              
+                  <div className="navbar navbar-default col-md-2">
+                    <ul className="nav nav-stacked">{menus}</ul>
+                  </div>
         );
     }
 }
 
-export default SiteMenu;
+export default SiteLeftMenu;

@@ -1,0 +1,22 @@
+.logo {
+  font-size: 80px;
+  color: grey;
+  padding: 15px;
+
+}
+.logo span {
+  text-align: center;
+  font-size: 0.3em;
+  line-height: 0.8em;
+  display: block;
+
+}
+.top-menu {
+  margin-top: 80px;
+}
+footer {
+  padding-top: 15px;
+}
+.login {
+  margin-top: 40px;
+}

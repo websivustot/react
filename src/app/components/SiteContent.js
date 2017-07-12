@@ -5,7 +5,10 @@ class SiteContent extends React.Component
     render()
     {
         return (
-                <div className="content">{this.props.content}</div>
+                <div className="col-md-10">
+                  <h1>{this.props.title}</h1>
+                  <p>{this.props.content}</p>
+                </div>
         );
     }
 }
