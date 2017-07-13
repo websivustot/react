@@ -2,19 +2,33 @@ import React from 'react';
 
 class SiteLoginButton extends React.Component
 {
-    render()
-    {
-        return (
-          <div className="col-md-2 login">
+
+    render() {
+      let loginElement;
+      console.log(this.props.state);
+      if (this.props.state){
+        loginElement = (
+          <div>
+            Hello {this.props.userName}
+          </div>
+        )
+      } else {
+        loginElement = (
           <button type="button" className="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
             Login
           </button>
+        )
+      }
+
+        return (
+          <div className="col-md-2 login">
+          { loginElement }
           </div>
 
 
 
         );
-    }
+  }
 }
 
 export default SiteLoginButton;

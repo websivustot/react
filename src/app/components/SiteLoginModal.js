@@ -1,7 +1,9 @@
 import React from 'react';
 
 class SiteLoginModal extends React.Component
+
 {
+
     render()
     {
         return (
@@ -15,8 +17,8 @@ class SiteLoginModal extends React.Component
                       <div className="modal-body">
                         <form>
                         <div className="form-group">
-                          <label for="exampleInputEmail1">Email address</label>
-                          <input type="email" className="form-control" id="exampleInputEmail1" placeholder="Email" />
+                          <label for="exampleInputEmail1">Your Name</label>
+                          <input type="text" className="form-control" id="exampleInputEmail1" placeholder="Your Name" />
                         </div>
                         <div className="form-group">
                           <label for="exampleInputPassword1">Password</label>
@@ -26,7 +28,17 @@ class SiteLoginModal extends React.Component
                       </div>
                       <div className="modal-footer">
                         <button type="button" className="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="button" className="btn btn-primary">Login</button>
+                        <button type="button" className="btn btn-primary" onClick={
+                            () => {
+                              let name = $('#exampleInputEmail1').val();
+                              console.log(this.state);
+                              this.setState({
+                                loggedIn: name
+                              });
+                              console.log(this.state);
+                              $('#myModal').modal('hide');
+                            }
+                          }>Login</button>
                       </div>
                     </div>
                   </div>

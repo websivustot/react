@@ -22294,7 +22294,14 @@
 	  function SiteLayout() {
 	    _classCallCheck(this, SiteLayout);
 
-	    return _possibleConstructorReturn(this, (SiteLayout.__proto__ || Object.getPrototypeOf(SiteLayout)).apply(this, arguments));
+	    var _this = _possibleConstructorReturn(this, (SiteLayout.__proto__ || Object.getPrototypeOf(SiteLayout)).apply(this, arguments));
+
+	    console.log('SiteLogin::constructor()');
+
+	    _this.state = {
+	      loggedIn: false
+	    };
+	    return _this;
 	  }
 
 	  _createClass(SiteLayout, [{
@@ -22308,7 +22315,7 @@
 	          { className: 'navbar navbar-default' },
 	          _react2.default.createElement(_SiteLogo2.default, { logo: this.props.site.logo }),
 	          _react2.default.createElement(_SiteMenu2.default, { menus: this.props.site.menu }),
-	          _react2.default.createElement(_SiteLoginButton2.default, null)
+	          _react2.default.createElement(_SiteLoginButton2.default, { state: this.state.loggedIn })
 	        ),
 	        _react2.default.createElement(
 	          'div',
@@ -22325,7 +22332,7 @@
 	            'Copyright 2017 SiteName'
 	          )
 	        ),
-	        _react2.default.createElement(_SiteLoginModal2.default, null)
+	        _react2.default.createElement(_SiteLoginModal2.default, { state: this.state.loggedIn })
 	      );
 	    }
 	  }]);
@@ -22639,7 +22646,7 @@
 	"use strict";
 
 	Object.defineProperty(exports, "__esModule", {
-	    value: true
+	  value: true
 	});
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -22657,30 +22664,43 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 	var SiteLoginButton = function (_React$Component) {
-	    _inherits(SiteLoginButton, _React$Component);
+	  _inherits(SiteLoginButton, _React$Component);
 
-	    function SiteLoginButton() {
-	        _classCallCheck(this, SiteLoginButton);
+	  function SiteLoginButton() {
+	    _classCallCheck(this, SiteLoginButton);
 
-	        return _possibleConstructorReturn(this, (SiteLoginButton.__proto__ || Object.getPrototypeOf(SiteLoginButton)).apply(this, arguments));
+	    return _possibleConstructorReturn(this, (SiteLoginButton.__proto__ || Object.getPrototypeOf(SiteLoginButton)).apply(this, arguments));
+	  }
+
+	  _createClass(SiteLoginButton, [{
+	    key: "render",
+	    value: function render() {
+	      var loginElement = void 0;
+	      console.log(this.props.state);
+	      if (this.props.state) {
+	        loginElement = _react2.default.createElement(
+	          "div",
+	          null,
+	          "Hello ",
+	          this.props.userName
+	        );
+	      } else {
+	        loginElement = _react2.default.createElement(
+	          "button",
+	          { type: "button", className: "btn btn-primary btn-lg", "data-toggle": "modal", "data-target": "#myModal" },
+	          "Login"
+	        );
+	      }
+
+	      return _react2.default.createElement(
+	        "div",
+	        { className: "col-md-2 login" },
+	        loginElement
+	      );
 	    }
+	  }]);
 
-	    _createClass(SiteLoginButton, [{
-	        key: "render",
-	        value: function render() {
-	            return _react2.default.createElement(
-	                "div",
-	                { className: "col-md-2 login" },
-	                _react2.default.createElement(
-	                    "button",
-	                    { type: "button", className: "btn btn-primary btn-lg", "data-toggle": "modal", "data-target": "#myModal" },
-	                    "Login"
-	                )
-	            );
-	        }
-	    }]);
-
-	    return SiteLoginButton;
+	  return SiteLoginButton;
 	}(_react2.default.Component);
 
 	exports.default = SiteLoginButton;
@@ -22721,6 +22741,8 @@
 	  _createClass(SiteLoginModal, [{
 	    key: "render",
 	    value: function render() {
+	      var _this2 = this;
+
 	      return _react2.default.createElement(
 	        "div",
 	        { className: "modal fade", id: "myModal", tabindex: "-1", role: "dialog", "aria-labelledby": "myModalLabel" },
@@ -22760,9 +22782,9 @@
 	                  _react2.default.createElement(
 	                    "label",
 	                    { htmlFor: "exampleInputEmail1" },
-	                    "Email address"
+	                    "Your Name"
 	                  ),
-	                  _react2.default.createElement("input", { type: "email", className: "form-control", id: "exampleInputEmail1", placeholder: "Email" })
+	                  _react2.default.createElement("input", { type: "text", className: "form-control", id: "exampleInputEmail1", placeholder: "Your Name" })
 	                ),
 	                _react2.default.createElement(
 	                  "div",
@@ -22786,7 +22808,15 @@
 	              ),
 	              _react2.default.createElement(
 	                "button",
-	                { type: "button", className: "btn btn-primary" },
+	                { type: "button", className: "btn btn-primary", onClick: function onClick() {
+	                    var name = $('#exampleInputEmail1').val();
+	                    console.log(_this2.state);
+	                    _this2.setState({
+	                      loggedIn: name
+	                    });
+	                    console.log(_this2.state);
+	                    $('#myModal').modal('hide');
+	                  } },
 	                "Login"
 	              )
 	            )
