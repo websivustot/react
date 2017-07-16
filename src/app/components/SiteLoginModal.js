@@ -3,8 +3,7 @@ import React from 'react';
 class SiteLoginModal extends React.Component
 
 {
-
-    render()
+  render()
     {
         return (
                 <div className="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -18,7 +17,7 @@ class SiteLoginModal extends React.Component
                         <form>
                         <div className="form-group">
                           <label for="exampleInputEmail1">Your Name</label>
-                          <input type="text" className="form-control" id="exampleInputEmail1" placeholder="Your Name" />
+                          <input type="text" className="form-control" id="yourName" placeholder="Your Name" />
                         </div>
                         <div className="form-group">
                           <label for="exampleInputPassword1">Password</label>
@@ -30,12 +29,6 @@ class SiteLoginModal extends React.Component
                         <button type="button" className="btn btn-default" data-dismiss="modal">Close</button>
                         <button type="button" className="btn btn-primary" onClick={
                             () => {
-                              let name = $('#exampleInputEmail1').val();
-                              console.log(this.state);
-                              this.setState({
-                                loggedIn: name
-                              });
-                              console.log(this.state);
                               $('#myModal').modal('hide');
                             }
                           }>Login</button>

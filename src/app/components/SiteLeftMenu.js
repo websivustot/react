@@ -6,7 +6,7 @@ class SiteLeftMenu extends React.Component
     render()
     {
         let menus = this.props.menus.map((menu, index) => {
-            console.log(menu.title);
+            //console.log(menu.title);
             return <MenuItem
                 id={menu.id}
                 title={menu.title}

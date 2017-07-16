@@ -1,15 +1,16 @@
 import React from 'react';
+import { Link } from 'react-router';
 
 class MenuItem extends React.Component
 {
     render()
     {
-      console.log(this.props.title);
+
         return (
-                <li className="menuitem">
-                  <a href={this.props.uri}>
-                  {this.props.title}
-                  </a>
+                <li className={this.props.active ? 'active' : ''}>
+                  <Link to={this.props.href}>
+                    {this.props.children}
+                  </Link>
                 </li>
         );
     }

@@ -5,8 +5,8 @@ class SiteLoginButton extends React.Component
 
     render() {
       let loginElement;
-      console.log(this.props.state);
-      if (this.props.state){
+      //console.log(this.state);
+      if (this.props.loggedIn){
         loginElement = (
           <div>
             Hello {this.props.userName}

@@ -1,36 +1,49 @@
 import React from 'react';
 import SiteLogo from '../components/SiteLogo';
 import SiteMenu from '../components/SiteMenu';
+import MenuItem from '../components/MenuItem';
 import SiteLeftMenu from '../components/SiteLeftMenu';
 import SiteContent from '../components/SiteContent';
 import SiteLoginButton from '../components/SiteLoginButton';
 import SiteLoginModal from '../components/SiteLoginModal';
 
+
 class SiteLayout extends React.Component
 {
-  constructor() {
+  constructor(){
     super(...arguments);
-    console.log('SiteLogin::constructor()');
-
-    this.state = {
-      loggedIn: false
-    }
-  }
-    render()
+    this.logo = 'SiteLogo';
+}
+isActive (href){
+  return window.location.pathname === href;
+}
+  render()
     {
         return (
             <div className="container">
               <div className="navbar navbar-default">
-                <SiteLogo logo={this.props.site.logo} />
-                <SiteMenu menus={this.props.site.menu} />
-                <SiteLoginButton state={this.state.loggedIn} />
+                <SiteLogo logo={this.logo} />
+                  <SiteMenu>
+                    <MenuItem href="/" active={this.isActive('/')}>
+                      Main
+                    </MenuItem>
+                    <MenuItem href="/blogs" active={this.isActive('/blogs')}>
+                      Blog
+                    </MenuItem>
+                    <MenuItem href="/comments" active={this.isActive('/comments')}>
+                      Comments
+                    </MenuItem>
+                    <MenuItem href="/users" active={this.isActive('/users')}>
+                      Users
+                    </MenuItem>
+                  </SiteMenu>
+                <SiteLoginButton />
               </div>
               <div>
-                <SiteLeftMenu menus={this.props.site.sideMenu} />
-                <SiteContent content={this.props.site.content[0].text} title={this.props.site.content[0].title} />
+                {this.props.children}
               </div>
               <footer className="navbar navbar-default col-md-12"><p>Copyright 2017 SiteName</p></footer>
-              <SiteLoginModal state={this.state.loggedIn} />
+              <SiteLoginModal />
             </div>
         );
     }
